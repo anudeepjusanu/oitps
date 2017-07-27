@@ -1,0 +1,81 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+        Question
+      </h1>
+        <ol class="breadcrumb">
+            <li><a ui-sref="home"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Question</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="invoice">
+        <!-- title row -->
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="page-header">
+                  <i class="fa fa-question"></i> {{vm.question.question}}
+                  <small class="pull-right">Date: {{vm.question.postedDate | date: 'short'}}</small>
+                </h2>
+            </div>
+            <!-- /.col -->
+        </div>
+        <div class="row">
+            <div class="col-xs-12" ng-bind-html="vm.question.largeText">
+            </div>
+        </div>
+        <div ng-if="vm.question.location.length" ng-repeat="file in vm.question.location" class="row">
+            <div class="col-sm-2" ng-if="file.type.indexOf('image/') > -1">
+                <img ng-src="{{file.path}}" class="img-responsive">
+            </div>
+        </div>
+    </section>
+    <section class="invoice">
+        <!-- title row -->
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="page-header">
+                  <i class="fa fa-globe"></i> Answers
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12" ng-repeat="answer in vm.question.answers">
+                <div class="clearfix">
+                    <div ng-bind-html="answer.text"></div>
+                    <div ng-if="answer.location.length" ng-repeat="file in answer.location" class="row">
+                        <div class="col-sm-2" ng-if="file.type.indexOf('image/') > -1">
+                            <img ng-src="{{file.path}}" class="img-responsive">
+                        </div>
+                    </div>
+                    <small class="pull-right">Date: {{answer.postedDate | date: 'short'}}</small>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <!-- /.col -->
+    </section>
+    <section class="invoice">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="page-header">
+                  <i class="fa fa-floppy-o"></i> Post Answer
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div text-angular ta-toolbar="[['h1','h2','h3', 'p'],['bold','italics']['insertLink']]" ng-model="vm.answer" class="col-xs-12"></div>
+            <div class="col-xs-12"></div>
+            <div class="col-xs-12">
+                <div class="col-xs-12 row">
+                    <div class="col-sm-9">
+                        <input type="file" ngf-select="" class="fileUpload upload" ng-model="vm.file" name="file" accept="form.accType" />
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="pull-right btn btn-primary" ng-click="vm.postAnswer()">Post</button>
+                    </div>
+                </div>
+            </div>
+    </section>
+    </div>

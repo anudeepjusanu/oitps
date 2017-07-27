@@ -1,0 +1,39 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+        {{vm.headerText}} Question
+      </h1>
+        <ol class="breadcrumb">
+            <li><a ui-sref="home"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">{{vm.headerText}} Question</li>
+        </ol>
+    </section>
+    <section class="invoice">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="page-header">
+                  <i class="fa fa-floppy-o"></i> Post Question
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <form>
+                <div class="form-group has-feedback">
+                    <input type="text" name="question" id="question" ng-model="vm.obj.question" class="form-control" placeholder="Question" />
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div text-angular ta-toolbar="[['h1','h2','h3', 'p'],['bold','italics']['insertLink']]" ng-model="vm.obj.largeText" class="col-xs-12"></div>
+                <div class="col-xs-12"></div>
+                <div class="col-xs-12 row">
+                    <div class="col-sm-9">
+                        <input type="file" ngf-select="" class="fileUpload upload" ng-model="vm.file" name="file" accept="form.accType" />
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="pull-right btn btn-primary" ng-click="vm.postQuestion()">Post</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,62 @@
+﻿<br>
+<div class="row">
+    <div class="col-sm-9">Hi {{vm.user.firstName}}!!</div>
+    <div class="col-sm-3">
+        <button class="btn btn-primary pull-right" ui-sref="postQuestion">Post</button>
+    </div>
+</div>
+<br>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+        My Questions
+      </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- The time line -->
+                <ul class="timeline">
+                    <!-- timeline time label -->
+                    <!-- /.timeline-label -->
+                    <!-- timeline item -->
+                    <li ng-repeat="question in vm.questions">
+                        <i class="fa fa-envelope" ng-class-odd="'bg-blue'" ng-class-even="'bg-purple'"></i>
+                        <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o"></i> {{question.postedDate | date: 'short'}}</span>
+                            <h3 class="timeline-header">{{question.question}}</h3>
+                            <div class="timeline-body">
+                                <div ng-bind-html="question.largeText"></div>
+                                <br>
+                                <div ng-if="question.location.length" class="row">
+                                    <div ng-repeat="file in question.location">
+                                        <div class="col-sm-2" ng-if="file.type.indexOf('image/') > -1">
+                                            <img ng-src="{{file.path}}" class="img-responsive">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-footer">
+                                <a class="btn btn-warning btn-xs" ui-sref="editQuestion({id:question._id})" ng-show="vm.user._id == question.postedById">Edit</a>
+                                <a class="btn btn-primary btn-xs" ui-sref="question({'id': question._id})">Read more</a>
+                                <a class="btn btn-danger btn-xs" ng-show="vm.user._id == question.postedById">Delete</a>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- /.timeline-label -->
+                    <li>
+                        <i class="fa fa-clock-o bg-gray"></i>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
